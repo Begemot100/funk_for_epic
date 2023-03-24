@@ -1,0 +1,135 @@
+import simple_draw as sd
+sd.resolution=(1200,800)
+
+
+point = sd.get_point(950,50)
+def draw_branches(point,angle,length):
+    if length < 10:
+        return
+    v1 = sd.get_vector(start_point=point,angle=angle,length=length,width=2)
+    v1.draw(color=sd.COLOR_DARK_RED,width=3)
+    point_0 = v1.end_point
+    angle_0 = angle + 30
+    angle_1 = angle - 30
+    length_1=length*0.82
+    if length_1 < 10:
+        v2 = sd.get_vector(start_point=point_0,angle=angle_0,length=length,width=2)
+        v2.draw(color=sd.COLOR_GREEN)
+
+        v3 = sd.get_vector(start_point=point_0,angle=angle_1,length=length_1)
+        v3.draw(color=sd.COLOR_GREEN)
+    draw_branches(point=point_0,angle=angle_0,length=length_1)
+    draw_branches(point=point_0,angle=angle_1,length=length_1)
+point1 = sd.get_point(230,40)
+draw_branches(point=point,angle=90,length=100)
+draw_branches(point=point1,angle=90,length=30)
+x = 0
+y = 0
+def grass():
+    x_grass = sd.get_point(x,y)
+    y_grass = sd.get_point(x+1200,y+50)
+
+    sd.rectangle(left_bottom=x_grass,right_top=y_grass,width=0,color=sd.COLOR_DARK_GREEN)\
+
+grass()
+rainbow_colors = (sd.COLOR_RED, sd.COLOR_ORANGE, sd.COLOR_YELLOW, sd.COLOR_GREEN,
+                   sd.COLOR_CYAN, sd.COLOR_BLUE, sd.COLOR_PURPLE)
+def rainbow():
+
+    x = 900
+    y = -480
+    for i in rainbow_colors:
+        point=sd.get_point(x,y)
+        sd.circle(center_position=point,radius=1350,color = i, width=17)
+        x += 15
+        y += -7
+
+
+rainbow()
+
+
+# def wall_house():
+#     x = -50
+#     y = 50
+#     width = 50
+#     height = 25
+#     for y in range(y, 200, 25):
+#         x = int(y/50) % 2 * 50
+#         for x in range(x, 200, 50):
+#             x1_point = sd.get_point(x-50, y)
+#             y1_point = sd.get_point(x + width, y + height)
+#
+#             sd.rectangle(left_bottom=x1_point, right_top=y1_point, color = sd.COLOR_DARK_RED, width=5)
+
+# wall_house()
+def sun():
+    x_sun = 1100
+    y_sun = 720
+    point_sun = sd.get_point(x_sun,y_sun)
+    sd.circle(center_position=point_sun,radius=70,width=0,color=sd.COLOR_YELLOW)
+sun()
+
+
+x_house = 0
+y_house = 50
+point_house = sd.get_point(x_house,y_house)
+sd.square(left_bottom=point_house,side=200,width=0,color=sd.COLOR_DARK_RED)
+
+x_roof = -10
+y_roof = 250
+point_roof = sd.get_point(x_roof,y_roof)
+def triangle(point, angle=0, length=200):
+    x1 = sd.get_vector(start_point=point_roof, angle=angle, length=length, width=50)
+    x1.draw(color=sd.COLOR_DARK_GREEN)
+    x2 = sd.get_vector(start_point=x1.end_point, angle= angle + 160, length=200, width=50)
+    x2.draw(color=sd.COLOR_DARK_GREEN)
+    x3 = sd.get_vector(start_point=x2.end_point, angle= angle + 210, length=200, width=50)
+    x3.draw(color=sd.COLOR_DARK_GREEN)
+
+
+
+triangle(point=point_roof,angle=0,length=260)
+
+def window():
+
+    x_window = 40
+    y_window = 100
+    point_window = sd.get_point(x_window,y_window)
+    sd.square(left_bottom=point_window,side=100,width=0,color=sd.COLOR_BLUE)
+    point_window1 = sd.get_point(x_window,y_window)
+    sd.square(left_bottom=point_window1,side=102,width=10,color=sd.COLOR_BLACK)
+window()
+
+
+
+
+
+def air_chair():
+    x_chair = 810
+    y_chair = 70
+
+    point_chair = sd.get_point(x_chair,y_chair)
+    point_chair1 = sd.get_point(x_chair+70,y_chair+20)
+    sd.rectangle(left_bottom=point_chair,right_top=point_chair1,color=sd.COLOR_DARK_RED,width=0)
+
+    point_chain_left = sd.get_point(810,70)
+    chain_left = sd.get_vector(start_point=point_chain_left,angle=90,length=180,width=2)
+    chain_left.draw(color=sd.COLOR_WHITE)
+    point_chain_raight = sd.get_point(880,70)
+    chain_rigth = sd.get_vector(start_point=point_chain_raight,angle=90,length=170,width=2)
+    chain_rigth.draw(color=sd.COLOR_WHITE)
+
+air_chair()
+
+
+
+x_bird = 1080
+y_bird = 690
+point_bird = sd.get_point(x_bird,y_bird)
+l_bird = sd.get_vector(start_point=point_bird,angle=348,length=40,width=5)
+l_bird.draw(color=sd.COLOR_BLACK)
+r_bird = sd.get_vector(start_point=point_bird,angle=140,length=40,width=5)
+r_bird.draw(color=sd.COLOR_BLACK)
+
+
+sd.pause()
